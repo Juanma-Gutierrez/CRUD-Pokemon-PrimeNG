@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { TableModule } from 'primeng/table';
 import { TipoComponent } from './tipo/tipo.component';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TipoComponent } from './tipo/tipo.component';
     ChartModule,
     DialogModule,
     DropdownModule,
+    ProgressBarModule,
     SpeedDialModule,
     TableModule
   ],

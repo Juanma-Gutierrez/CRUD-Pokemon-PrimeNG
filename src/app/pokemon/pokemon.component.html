@@ -3,51 +3,27 @@
 </div>
 
 <div class="content">
-  <p-table [value]="pokemon" [paginator]="true" [rows]="5" [rowHover]="true" styleClass="p-datatable-striped"
-    sortField="{{orden}}" sortMode="single" [sortOrder]="rever">
+  <p-table [value]="pokemon" [paginator]="true" [rows]="8" [rowHover]="true" styleClass="p-datatable-sm"
+    sortField="nombre">
     <ng-template pTemplate="header">
       <tr>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="Nombre"
-            (click)="ordena('nombre')">
-          </button>
+        <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon>
         </th>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="1ª Evol."
-            (click)="ordena('evolucion1')">
-          </button>
+        <th pSortableColumn="evolucion1">1ª Evol.<p-sortIcon field="evolucion1"></p-sortIcon>
         </th>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="2ª Evol."
-            (click)="ordena('evolucion2')">
-          </button>
+        <th pSortableColumn="evolucion2">2ª Evol.<p-sortIcon field="evolucion2"></p-sortIcon>
         </th>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="Habilidad"
-            (click)="ordena('habilidad')">
-          </button>
+        <th pSortableColumn="habilidad">Habilidad<p-sortIcon field="habilidad"></p-sortIcon>
         </th>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="Tipo" (click)="ordena('tipo')">
-          </button>
+        <th pSortableColumn="tipo">Tipo<p-sortIcon field="tipo"></p-sortIcon>
         </th>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="Bioma" (click)="ordena('bioma')">
-          </button>
+        <th pSortableColumn="bioma">Bioma<p-sortIcon field="bioma"></p-sortIcon>
         </th>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="Ataque"
-            (click)="ordena('ataque')">
-          </button>
+        <th pSortableColumn="ataque">Ataque<p-sortIcon field="ataque"></p-sortIcon>
         </th>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="Defensa"
-            (click)="ordena('defensa')">
-          </button>
+        <th pSortableColumn="defensa">Defensa<p-sortIcon field="defensa"></p-sortIcon>
         </th>
-        <th>
-          <button pButton class="p-button-sm p-button-secondary" type="button" label="Vida" (click)="ordena('vida')">
-          </button>
+        <th pSortableColumn="vida">Vida<p-sortIcon field="vida"></p-sortIcon>
         </th>
         <th></th>
       </tr>
@@ -60,17 +36,28 @@
         <td>{{p.habilidad}}</td>
         <td>{{p.tipo}}</td>
         <td>{{p.bioma}}</td>
-        <td class="tcenter">{{p.ataque}}</td>
+        <!--         <td class="tcenter">{{p.ataque}}</td> -->
+
+        <td class="tcenter">
+          <p-progressBar [value]="p.ataque" [style]="{'height': '18px'}"></p-progressBar>
+        </td>
+        <td class="tcenter">
+          <p-progressBar [value]="p.defensa" [style]="{'height': '18px'}"></p-progressBar>
+        </td>
+        <td class="tcenter">
+          <p-progressBar [value]="p.vida/10" [style]="{'height': '18px'}"></p-progressBar>
+        </td>
+
         <td class="tcenter">{{p.defensa}}</td>
         <td class="tcenter">{{p.vida}}</td>
         <td class="buttons">
-          <button pButton class="p-button-sm" type="button" icon="pi pi-eye" title="Muestra pokemon"
+          <button pButton class="p-button-sm p-button-secondary" type="button" icon="pi pi-eye" title="Muestra pokemon"
             (click)="muestraPokemon(p)">
           </button>
-          <button pButton class="p-button-sm" type="button" icon="pi pi-pencil" title="Modifica pokemon"
-            (click)="editaPokemon(p)">
+          <button pButton class="p-button-sm p-button-warning" type="button" icon="pi pi-pencil"
+            title="Modifica pokemon" (click)="editaPokemon(p)">
           </button>
-          <button pButton class="p-button-sm" type="button" icon="pi pi-trash" title="Elimina pokemon"
+          <button pButton class="p-button-sm p-button-danger" type="button" icon="pi pi-trash" title="Elimina pokemon"
             (click)="borraPokemon(p._id)">
           </button>
         </td>

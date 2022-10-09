@@ -14,8 +14,6 @@ export class BiomaComponent implements OnInit {
   accion = "Nuevo bioma";
   bioma: Bioma[] = [];
   muestraFormularioBioma = false;
-  orden = "nombre";
-  rever = 1;
 
   constructor(private biomaService: BiomaService) {
     this.cargaBioma();
@@ -60,16 +58,6 @@ export class BiomaComponent implements OnInit {
     this.muestraFormularioBioma = false;
     this.cargaBioma();
     this.accion = "Nuevo bioma";
-  }
-
-  ordena(nuevoOrden: string) {
-    if (this.orden == nuevoOrden) {
-      this.rever = this.rever * -1;
-    } else {
-      this.rever = 1;
-    }
-    this.orden = nuevoOrden;
-    this.cargaBioma();
   }
 
 }

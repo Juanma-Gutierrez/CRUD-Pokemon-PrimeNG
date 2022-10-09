@@ -14,8 +14,6 @@ export class TipoComponent implements OnInit {
   tipo: Tipo[] = [];
   muestraFormularioTipo = false;
   accion = "Nuevo tipo";
-  rever = 1;
-  orden = "tipo";
 
   constructor(private tipoService: TipoService) {
     this.cargaTipo();
@@ -61,14 +59,6 @@ export class TipoComponent implements OnInit {
     this.cargaTipo();
     this.accion = "Nuevo tipo";
   }
-  ordena(nuevoOrden: string) {
-    if (this.orden == nuevoOrden) {
-      this.rever = this.rever * -1;
-    } else {
-      this.rever = 1;
-    }
-    this.orden = nuevoOrden;
-    this.cargaTipo();
-  }
+
 }
 

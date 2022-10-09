@@ -5,7 +5,6 @@ import { Pokemon } from '../pokemon';
 import { Bioma } from '../bioma';
 import { Tipo } from '../tipo';
 
-
 @Component({
   selector: 'app-pokemon',
   templateUrl: './pokemon.component.html',
@@ -18,12 +17,9 @@ export class PokemonComponent implements OnInit {
   bioma: Bioma[] = [];
   tipo: Tipo[] = [];
 
-
   accion = "Nuevo Pokémon";
   muestraFormularioPokemon = false;
   muestraInfoPokemon = false;
-  orden = "nombre";
-  rever = 1;
 
   data: any;
   options: any;
@@ -151,17 +147,6 @@ export class PokemonComponent implements OnInit {
     this.muestraInfoPokemon = true;
     this.formularioPokemon.patchValue(pokemon);
   }
-
-  ordena(nuevoOrden: string) {
-    if (this.orden == nuevoOrden) {
-      this.rever = this.rever * -1;
-    } else {
-      this.rever = 1;
-    }
-    this.orden = nuevoOrden;
-    this.cargaPokemon();
-  }
-
 
 
 }
