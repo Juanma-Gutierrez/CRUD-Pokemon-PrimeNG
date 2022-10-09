@@ -1,0 +1,49 @@
+h1,
+h2 {
+  font-family: sans-serif;
+  text-align: center !important;
+  color: #4d5eba;
+}
+
+#form-fields {
+  text-align: left;
+  padding: 1em;
+}
+
+.field-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.field-wrap input {
+  width: 400%;
+  padding: 5px;
+  flex-grow: 2;
+  margin-bottom: 1em;
+}
+
+.field-wrap label {
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 1em;
+}
+
+#add-button {
+  position: fixed;
+  right: 100px;
+  bottom: 100px;
+}
+
+button {
+  margin-right: 5px;
+}
+
+.buttons {
+  text-align: right !important;
+}
+
+p-button{
+  margin-right:20px;
+}

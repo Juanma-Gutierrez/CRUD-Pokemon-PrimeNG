@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box !important;
+}
+
+h1,
+h2 {
+  font-family: sans-serif;
+  text-align: center !important;
+  color: #4d5eba;
+}
+
+#form-fields {
+  text-align: left;
+  padding: 1em;
+}
+
+.field-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.field-wrap input {
+  width: 300%;
+  padding: 5px;
+  flex-grow: 2;
+  margin: 0.5rem 2rem 0.5rem 1rem;
+}
+
+.field-wrap label {
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 0.5em;
+  text-align: right;
+}
+
+#add-button {
+  position: fixed;
+  right: 100px;
+  bottom: 100px;
+}
+
+td button {
+  margin-right: 5px;
+  padding:5px;
+}
+
+.tcenter{
+  text-align: center !important;
+}
+
+p-button{
+  margin-right:20px;
+}

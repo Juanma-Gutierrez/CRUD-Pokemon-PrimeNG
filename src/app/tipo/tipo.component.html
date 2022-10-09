@@ -1,0 +1,52 @@
+<div class="banner">
+  <h2>Listado de tipos</h2>
+</div>
+<div class="content">
+  <p-table [value]="tipo" [paginator]="true" [rows]="5" [rowHover]="true" styleClass="p-datatable-striped"
+  sortField="{{orden}}" sortMode="single" [sortOrder]="rever">
+    <ng-template pTemplate="header">
+      <tr>
+        <th colspan="2">
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Nombre" (click)="ordena('tipo')">
+          </button>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-t>
+      <tr>
+        <td>{{t.tipo}}</td>
+        <td class="buttons">
+          <button pButton class="p-button-sm" type="button" icon="pi pi-pencil" title="Modifica tipo"
+            (click)="editaTipo(t)">
+          </button>
+          <button pButton class="p-button-sm" type="button" icon="pi pi-trash" title="Elimina tipo"
+            (click)="borraTipo(t._id)">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Botón para añadir tipos -->
+  <div id="add-button">
+    <p-speedDial (click)="muestraFormularioTipo=!muestraFormularioTipo">
+    </p-speedDial>
+  </div>
+
+  <!-- Ventana emergente para añadir y editar tipos -->
+  <p-dialog [(visible)]="muestraFormularioTipo" [style]="{width: '40vw'}"
+    [transitionOptions]="'200ms'" header="{{accion}}">
+    <form [formGroup]="formularioTipo" (ngSubmit)="submitTipo()">
+      <div id="form-fields">
+        <div class="field-wrap">
+          <label for="tipo">Tipo:</label>
+          <input id="tipo" type="text" formControlName="tipo">
+        </div>
+      </div>
+      <div>
+        <p-button type="submit" label="Aceptar" styleClass="p-button-success"></p-button>
+        <p-button label="Cancelar" styleClass="p-button-danger" (click)="muestraFormularioTipo = false"></p-button>
+      </div>
+    </form>
+  </p-dialog>
+</div>

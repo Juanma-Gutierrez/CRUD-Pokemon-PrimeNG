@@ -1,0 +1,51 @@
+<div class="banner">
+  <h2>Listado de biomas</h2>
+</div>
+<div class="content">
+  <p-table [value]="bioma" [paginator]="true" [rows]="5" [rowHover]="true" styleClass="p-datatable-striped"  sortField="{{orden}}" sortMode="single" [sortOrder]="rever">
+    <ng-template pTemplate="header">
+      <tr>
+        <th colspan="2">
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Nombre" (click)="ordena('nombre')">
+          </button>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-b>
+      <tr>
+        <td>{{b.nombre}}</td>
+        <td class="buttons">
+          <button pButton class="p-button-sm" type="button" icon="pi pi-pencil" title="Modifica bioma"
+            (click)="editaBioma(b)">
+          </button>
+          <button pButton class="p-button-sm" type="button" icon="pi pi-trash" title="Elimina bioma"
+            (click)="borraBioma(b._id)">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Botón para añadir biomas -->
+  <div id="add-button">
+    <p-speedDial (click)="muestraFormularioBioma=!this.muestraFormularioBioma">
+    </p-speedDial>
+  </div>
+
+  <!-- Ventana emergente para añadir y editar biomas -->
+  <p-dialog [(visible)]="muestraFormularioBioma" [style]="{width: '40vw'}"
+    [transitionOptions]="'200ms'" header="{{accion}}">
+    <form [formGroup]="formularioBioma" (ngSubmit)="submitBioma()">
+      <div id="form-fields">
+        <div class="field-wrap">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" formControlName="nombre" placeholder="Introduce nuevo bioma">
+        </div>
+      </div>
+      <div>
+        <p-button type="submit" label="Aceptar" styleClass="p-button-success"></p-button>
+        <p-button label="Cancelar" styleClass="p-button-danger" (click)="muestraFormularioBioma = false"></p-button>
+      </div>
+    </form>
+  </p-dialog>
+</div>

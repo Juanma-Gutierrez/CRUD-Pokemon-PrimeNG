@@ -1,0 +1,184 @@
+<div class="banner">
+  <h2>Listado de Pokémons</h2>
+</div>
+
+<div class="content">
+  <p-table [value]="pokemon" [paginator]="true" [rows]="5" [rowHover]="true" styleClass="p-datatable-striped"
+    sortField="{{orden}}" sortMode="single" [sortOrder]="rever">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Nombre"
+            (click)="ordena('nombre')">
+          </button>
+        </th>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="1ª Evol."
+            (click)="ordena('evolucion1')">
+          </button>
+        </th>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="2ª Evol."
+            (click)="ordena('evolucion2')">
+          </button>
+        </th>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Habilidad"
+            (click)="ordena('habilidad')">
+          </button>
+        </th>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Tipo" (click)="ordena('tipo')">
+          </button>
+        </th>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Bioma" (click)="ordena('bioma')">
+          </button>
+        </th>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Ataque"
+            (click)="ordena('ataque')">
+          </button>
+        </th>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Defensa"
+            (click)="ordena('defensa')">
+          </button>
+        </th>
+        <th>
+          <button pButton class="p-button-sm p-button-secondary" type="button" label="Vida" (click)="ordena('vida')">
+          </button>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-p>
+      <tr>
+        <td>{{p.nombre}}</td>
+        <td>{{p.evolucion1}}</td>
+        <td>{{p.evolucion2}}</td>
+        <td>{{p.habilidad}}</td>
+        <td>{{p.tipo}}</td>
+        <td>{{p.bioma}}</td>
+        <td class="tcenter">{{p.ataque}}</td>
+        <td class="tcenter">{{p.defensa}}</td>
+        <td class="tcenter">{{p.vida}}</td>
+        <td class="buttons">
+          <button pButton class="p-button-sm" type="button" icon="pi pi-eye" title="Muestra pokemon"
+            (click)="muestraPokemon(p)">
+          </button>
+          <button pButton class="p-button-sm" type="button" icon="pi pi-pencil" title="Modifica pokemon"
+            (click)="editaPokemon(p)">
+          </button>
+          <button pButton class="p-button-sm" type="button" icon="pi pi-trash" title="Elimina pokemon"
+            (click)="borraPokemon(p._id)">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Botón para añadir pokemons -->
+  <div id="add-button">
+    <p-speedDial (click)="muestraFormularioPokemon=!muestraFormularioPokemon">
+    </p-speedDial>
+  </div>
+
+  <!-- Ventana emergente para añadir y editar pokemons -->
+  <p-dialog [(visible)]="muestraFormularioPokemon" [style]="{width: '90vw'}" [transitionOptions]="'200ms'"
+    header="{{accion}}">
+    <form [formGroup]="formularioPokemon" (ngSubmit)="submitPokemon()">
+      <div id="form-fields">
+        <div class="field-wrap">
+          <label for="nombre">Nombre:</label>
+          <input id="nombre" type="text" formControlName="nombre" placeholder="Introduce nombre">
+          <label for="habilidad">Habilidad:</label>
+          <input id="habilidad" type="text" formControlName="habilidad" placeholder="Introduce habilidad">
+        </div>
+        <div class="field-wrap">
+          <label for="evolucion1">1ª Evolución:</label>
+          <input id="evolucion1" type="text" formControlName="evolucion1" placeholder="Introduce 1ª evolución">
+          <label for="tipo">Tipo:</label>
+          <input id="tipo" type="text" formControlName="tipo" placeholder="Selecciona tipo">
+          <!--<p-dropdown [options]="tipo"  optionLabel="tipo"></p-dropdown>-->
+
+        </div>
+        <div class="field-wrap">
+          <label for="evolucion2">2ª Evolución:</label>
+          <input id="evolucion2" type="text" formControlName="evolucion2" placeholder="Introduce 2ª evolución">
+          <label for="bioma">Bioma:</label>
+          <input id="bioma" type="string" formControlName="bioma" placeholder="Selecciona bioma">
+          <!--<p-dropdown [options]="bioma"  optionLabel="bioma"></p-dropdown>-->
+        </div>
+        <div class="field-wrap">
+          <label for="ataque">Ataque:</label>
+          <input id="ataque" type="range" formControlName="ataque" max="100" min="0" step="1">
+
+          <label for="defensa">Defensa:</label>
+          <input id="defensa" type="range" formControlName="defensa" max="100" min="0" step="1">
+
+          <label for="vida">Vida:</label>
+          <input id="vida" type="range" formControlName="vida" max="1000" min="0" step="1">
+        </div>
+      </div>
+      <div>
+        <p-button type="submit" label="Aceptar" styleClass="p-button-success"></p-button>
+        <p-button label="Cancelar" styleClass="p-button-danger" (click)="muestraFormularioPokemon = false"></p-button>
+      </div>
+    </form>
+  </p-dialog>
+
+  <!-- Ventana emergente para mostrar detalle de un pokemon -->
+  <p-dialog [(visible)]="muestraInfoPokemon" [style]="{width: '90vw'}" header="Detalle de Pokemon">
+    <form [formGroup]="formularioPokemon">
+      <div id="form-fields">
+        <div class="field-wrap">
+          <label for="nombre">Nombre:</label>
+          <input readonly="readonly" id="nombre" type="text" formControlName="nombre">
+          <label for="habilidad">Habilidad:</label>
+          <input readonly="readonly" id="habilidad" type="text" formControlName="habilidad">
+          <label for="ataque">Ataque:</label>
+          <input readonly="readonly" id="ataque" type="number" formControlName="ataque" max="100" min="0" step="1">
+        </div>
+        <div class="field-wrap">
+          <label for="evolucion1">1ª Evolución:</label>
+          <input readonly="readonly" id="evolucion1" type="text" formControlName="evolucion1">
+          <label for="tipo">Tipo:</label>
+          <input readonly="readonly" id="tipo" type="text" formControlName="tipo">
+          <!--<p-dropdown [options]="tipo"  optionLabel="tipo"></p-dropdown>-->
+          <label for="defensa">Defensa:</label>
+          <input readonly="readonly" id="defensa" type="number" formControlName="defensa" max="100" min="0" step="1">
+        </div>
+        <div class="field-wrap">
+          <label for="evolucion2">2ª Evolución:</label>
+          <input readonly="readonly" id="evolucion2" type="text" formControlName="evolucion2">
+          <label for="bioma">Bioma:</label>
+          <input readonly="readonly" id="bioma" type="string" formControlName="bioma">
+          <!--<p-dropdown [options]="bioma"  optionLabel="bioma"></p-dropdown>-->
+          <label for="vida">Vida:</label>
+          <input readonly="readonly" id="vida" type="number" formControlName="vida" max="1000" min="0" step="1">
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <tr>
+            <td>
+              <p-chart type="bar" [data]="data" [options]="horizontalOptions" width="40vw" height="10vw"></p-chart>
+            </td>
+            <td>
+              <p-chart type="bar" [data]="data" [options]="options" width="20vw" height="10vw"></p-chart>
+            </td>
+            <td>
+              <p-chart type="polarArea" [data]="data" [options]="chartOptions" width="10vw" height="10vw"></p-chart>
+            </td>
+            <td>
+              <p-chart type="radar" [data]="data" [options]="chartOptions" width="10vw" height="10vw"></p-chart>
+            </td>
+          </tr>
+        </table>
+        <p-button label="Aceptar" styleClass="p-button-success" (click)="muestraInfoPokemon = false">
+        </p-button>
+      </div>
+    </form>
+  </p-dialog>
+</div>
