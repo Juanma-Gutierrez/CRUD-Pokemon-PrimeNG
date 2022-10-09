@@ -72,7 +72,7 @@ export class PokemonComponent implements OnInit {
       scales: {
         x: {
           ticks: {
-            display: false
+            display: true
           },
           grid: {
             color: '#ebedef'

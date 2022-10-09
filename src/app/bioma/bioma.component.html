@@ -2,10 +2,12 @@
   <h2>Listado de biomas</h2>
 </div>
 <div class="content">
-  <p-table [value]="bioma" [paginator]="true" [rows]="6" [rowHover]="true" styleClass="p-datatable-sm" sortField="nombre">
+  <p-table [value]="bioma" [paginator]="true" [rows]="6" [rowHover]="true" styleClass="p-datatable-sm"
+    sortField="nombre">
     <ng-template pTemplate="header">
       <tr>
-          <th pSortableColumn="nombre" colspan="2">Bioma <p-sortIcon field="nombre"></p-sortIcon></th>
+        <th pSortableColumn="nombre" colspan="2">Bioma <p-sortIcon field="nombre"></p-sortIcon>
+        </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-b>
@@ -30,8 +32,8 @@
   </div>
 
   <!-- Ventana emergente para añadir y editar biomas -->
-  <p-dialog [(visible)]="muestraFormularioBioma" [style]="{width: '40vw'}"
-    [transitionOptions]="'200ms'" header="{{accion}}">
+  <p-dialog [(visible)]="muestraFormularioBioma" [style]="{width: '40vw'}" [transitionOptions]="'200ms'"
+    header="{{accion}}">
     <form [formGroup]="formularioBioma" (ngSubmit)="submitBioma()">
       <div id="form-fields">
         <div class="field-wrap">

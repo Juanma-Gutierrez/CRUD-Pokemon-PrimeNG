@@ -15,6 +15,7 @@ export class BiomaComponent implements OnInit {
   bioma: Bioma[] = [];
   muestraFormularioBioma = false;
 
+
   constructor(private biomaService: BiomaService) {
     this.cargaBioma();
   }
@@ -29,7 +30,6 @@ export class BiomaComponent implements OnInit {
 
   async cargaBioma() {
     this.bioma = await this.biomaService.getBioma();
-    console.log(this.bioma);
   }
 
   editaBioma(bioma: Bioma) {
@@ -42,6 +42,7 @@ export class BiomaComponent implements OnInit {
     await this.biomaService.deleteBioma(id);
     this.cargaBioma();
   }
+
 
   async submitBioma() {
     let bioma = <Bioma>this.formularioBioma.value;

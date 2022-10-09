@@ -16,6 +16,8 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { TableModule } from 'primeng/table';
 import { TipoComponent } from './tipo/tipo.component';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     ChartModule,
     DialogModule,
     DropdownModule,
+    MessagesModule,
+    MessageModule,
     ProgressBarModule,
     SpeedDialModule,
     TableModule

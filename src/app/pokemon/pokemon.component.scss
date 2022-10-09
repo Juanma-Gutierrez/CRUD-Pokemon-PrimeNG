@@ -43,13 +43,28 @@ h2 {
 
 td button {
   margin-right: 5px;
-  padding:5px;
+  padding: 5px;
 }
 
-.tcenter{
+.tcenter {
   text-align: center !important;
 }
 
-p-button{
-  margin-right:20px;
+p-button {
+  margin-right: 20px;
+}
+
+::ng-deep .customProgress .p-progressbar {
+  height: 20px;
+}
+
+::ng-deep .customProgress .p-progressbar-label {
+  color: #fff;
+  font-size: 12px;
+}
+
+.contenedor{
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
