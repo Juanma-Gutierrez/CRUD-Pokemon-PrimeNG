@@ -20,6 +20,9 @@ export class PokemonComponent implements OnInit {
   accion = "Nuevo Pokémon";
   muestraFormularioPokemon = false;
   muestraInfoPokemon = false;
+  ataque: any;
+  defensa: any;
+  vida: any;
 
   data: any;
   options: any;
@@ -42,10 +45,10 @@ export class PokemonComponent implements OnInit {
         {
           label: "pokemon",
           backgroundColor: [
-            '#D64045',
-            '#4a5ab3',
-            '#307351'],
-          data: [73, 85, 652 / 10]
+            '#D6404599',
+            '#4a5ab399',
+            '#30735199'],
+          data: [this.ataque, this.defensa, this.vida / 10]
         }
       ]
     }
@@ -89,7 +92,6 @@ export class PokemonComponent implements OnInit {
     this.chartOptions = {
       plugins: { legend: { display: false } }
     };
-
   }
 
   ngOnInit(): void {
@@ -106,11 +108,9 @@ export class PokemonComponent implements OnInit {
     defensa: new FormControl(0),
     vida: new FormControl(0),
     bioma: new FormControl(''),
-
   });
 
   async cargaPokemon() {
-
     this.pokemon = await this.pokemonService.getPokemon();
   }
 
@@ -145,8 +145,8 @@ export class PokemonComponent implements OnInit {
 
   async muestraPokemon(pokemon: Pokemon) {
     this.muestraInfoPokemon = true;
+    this.data.datasets[0].data = [pokemon.ataque, pokemon.defensa, pokemon.vida / 10];
     this.formularioPokemon.patchValue(pokemon);
   }
-
 
 }
