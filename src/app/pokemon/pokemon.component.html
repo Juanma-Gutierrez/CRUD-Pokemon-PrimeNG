@@ -34,8 +34,8 @@
         <td>{{p.evolucion1}}</td>
         <td>{{p.evolucion2}}</td>
         <td>{{p.habilidad}}</td>
-        <td>{{p.tipo}}</td>
-        <td>{{p.bioma}}</td>
+        <td>{{p.tipo.tipo}}</td>
+        <td>{{p.bioma.bioma}}</td>
         <td class="tcenter">
           <p-progressBar [value]="p.ataque" class="customProgress"></p-progressBar>
         </td>
@@ -68,13 +68,13 @@
   </div>
 
   <!-- Ventana emergente para añadir y editar pokemons -->
-  <p-dialog [(visible)]="muestraFormularioPokemon" [style]="{width: '90vw'}" [transitionOptions]="'200ms'"
-    header="{{accion}}">
+  <p-dialog [(visible)]="muestraFormularioPokemon" [style]="{width: '90vw', height:'80vh'}"
+    [transitionOptions]="'200ms'" header="{{accion}}">
     <form [formGroup]="formularioPokemon" (ngSubmit)="submitPokemon()">
       <div id="form-fields">
         <div class="field-wrap">
           <label for="nombre">Nombre:</label>
-          <input id="nombre" type="text" formControlName="nombre" placeholder="Introduce nombre">
+          <input id="nombre" type="text" pInputText  formControlName="nombre" placeholder="Introduce nombre">
           <label for="habilidad">Habilidad:</label>
           <input id="habilidad" type="text" formControlName="habilidad" placeholder="Introduce habilidad">
         </div>
@@ -82,26 +82,26 @@
           <label for="evolucion1">1ª Evolución:</label>
           <input id="evolucion1" type="text" formControlName="evolucion1" placeholder="Introduce 1ª evolución">
           <label for="_id">Tipo:</label>
-<!--      <input id="tipo" type="text" formControlName="tipo" placeholder="Selecciona tipo"> -->
-
-          <select name="tipo" id="tipo" formControlName="tipo">
-            <option *ngFor="let t of tipo" [value]="t._id">{{t.tipo}}</option>
-          </select>
-
+          <!-- <input id="tipo" type="text" formControlName="tipo" placeholder="Selecciona tipo"> -->
+          <p-dropdown [options]="tipo" placeholder="Selecciona tipo" optionLabel="tipo" optionValue="_id"
+            formControlName="tipo">
+          </p-dropdown>
         </div>
         <div class="field-wrap">
           <label for="evolucion2">2ª Evolución:</label>
           <input id="evolucion2" type="text" formControlName="evolucion2" placeholder="Introduce 2ª evolución">
           <label for="bioma">Bioma:</label>
-          <input id="bioma" type="string" formControlName="bioma" placeholder="Selecciona bioma">
+          <!-- <input id="bioma" type="string" formControlName="bioma" placeholder="Selecciona bioma"> -->
+          <p-dropdown [options]="bioma" placeholder="Selecciona bioma" optionLabel="nombre" optionValue="_id"
+            formControlName="bioma">
+          </p-dropdown>
         </div>
+
         <div class="field-wrap">
           <label for="ataque">Ataque:</label>
           <input id="ataque" type="range" formControlName="ataque" max="100" min="0" step="1">
-
           <label for="defensa">Defensa:</label>
           <input id="defensa" type="range" formControlName="defensa" max="100" min="0" step="1">
-
           <label for="vida">Vida:</label>
           <input id="vida" type="range" formControlName="vida" max="1000" min="0" step="1">
         </div>

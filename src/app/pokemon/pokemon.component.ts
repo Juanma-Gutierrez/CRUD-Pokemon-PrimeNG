@@ -5,6 +5,7 @@ import { Pokemon } from '../pokemon';
 import { Bioma } from '../bioma';
 import { Tipo } from '../tipo';
 import { TipoService } from '../tipo.service';
+import { BiomaService } from '../bioma.service';
 
 @Component({
   selector: 'app-pokemon',
@@ -22,6 +23,7 @@ export class PokemonComponent implements OnInit {
   muestraFormularioPokemon = false;
   muestraInfoPokemon = false;
   tipoSeleccionado: Tipo = { _id: "", tipo: "" };
+  biomaSeleccionado: Bioma = { _id: "", nombre: "" };
   ataque: any;
   defensa: any;
   vida: any;
@@ -40,9 +42,12 @@ export class PokemonComponent implements OnInit {
 
   constructor(
     private pokemonService: PokemonService,
-    private tipoService: TipoService) {
+    private tipoService: TipoService,
+    private biomaService: BiomaService) {
+
     this.cargaPokemon();
     this.cargaTipo();
+    this.cargaBioma();
 
     this.data = {
       labels: ['Ataque', 'Defensa', 'Vida'],
@@ -157,6 +162,11 @@ export class PokemonComponent implements OnInit {
 
   async cargaTipo() {
     this.tipo = await this.tipoService.getTipo();
-    this.formularioPokemon.value.tipo = (this.tipoSeleccionado._id);
+    this.formularioPokemon.value.tipo = (this.tipoSeleccionado.tipo);
+  }
+
+  async cargaBioma() {
+    this.bioma = await this.biomaService.getBioma();
+    this.formularioPokemon.value.bioma = (this.biomaSeleccionado.nombre);
   }
 }
