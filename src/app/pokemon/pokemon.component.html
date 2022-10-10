@@ -81,9 +81,12 @@
         <div class="field-wrap">
           <label for="evolucion1">1ª Evolución:</label>
           <input id="evolucion1" type="text" formControlName="evolucion1" placeholder="Introduce 1ª evolución">
-          <label for="tipo">Tipo:</label>
-          <input id="tipo" type="text" formControlName="tipo" placeholder="Selecciona tipo">
-          <!--<p-dropdown [options]="tipo"  optionLabel="tipo"></p-dropdown>-->
+          <label for="_id">Tipo:</label>
+<!--      <input id="tipo" type="text" formControlName="tipo" placeholder="Selecciona tipo"> -->
+
+          <select name="tipo" id="tipo" formControlName="tipo">
+            <option *ngFor="let t of tipo" [value]="t._id">{{t.tipo}}</option>
+          </select>
 
         </div>
         <div class="field-wrap">
@@ -91,7 +94,6 @@
           <input id="evolucion2" type="text" formControlName="evolucion2" placeholder="Introduce 2ª evolución">
           <label for="bioma">Bioma:</label>
           <input id="bioma" type="string" formControlName="bioma" placeholder="Selecciona bioma">
-          <!--<p-dropdown [options]="bioma"  optionLabel="bioma"></p-dropdown>-->
         </div>
         <div class="field-wrap">
           <label for="ataque">Ataque:</label>
@@ -137,7 +139,6 @@
           <input readonly="readonly" id="evolucion2" type="text" formControlName="evolucion2">
           <label for="bioma">Bioma:</label>
           <input readonly="readonly" id="bioma" type="string" formControlName="bioma">
-          <!--<p-dropdown [options]="bioma"  optionLabel="bioma"></p-dropdown>-->
           <label for="vida">Vida:</label>
           <input readonly="readonly" id="vida" type="number" formControlName="vida" max="1000" min="0" step="1">
         </div>

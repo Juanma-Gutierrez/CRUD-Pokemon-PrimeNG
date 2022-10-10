@@ -4,6 +4,7 @@ import { PokemonService } from '../pokemon.service';
 import { Pokemon } from '../pokemon';
 import { Bioma } from '../bioma';
 import { Tipo } from '../tipo';
+import { TipoService } from '../tipo.service';
 
 @Component({
   selector: 'app-pokemon',
@@ -20,6 +21,7 @@ export class PokemonComponent implements OnInit {
   accion = "Nuevo Pokémon";
   muestraFormularioPokemon = false;
   muestraInfoPokemon = false;
+  tipoSeleccionado: Tipo = { _id: "", tipo: "" };
   ataque: any;
   defensa: any;
   vida: any;
@@ -36,8 +38,11 @@ export class PokemonComponent implements OnInit {
   stackedOptions: any;
 
 
-  constructor(private pokemonService: PokemonService) {
+  constructor(
+    private pokemonService: PokemonService,
+    private tipoService: TipoService) {
     this.cargaPokemon();
+    this.cargaTipo();
 
     this.data = {
       labels: ['Ataque', 'Defensa', 'Vida'],
@@ -45,9 +50,9 @@ export class PokemonComponent implements OnInit {
         {
           label: "pokemon",
           backgroundColor: [
-            '#D6404599',
-            '#4a5ab399',
-            '#30735199'],
+            '#D64045cc',
+            '#4a5ab3cc',
+            '#307351cc'],
           data: [this.ataque, this.defensa, this.vida / 10]
         }
       ]
@@ -111,6 +116,7 @@ export class PokemonComponent implements OnInit {
   });
 
   async cargaPokemon() {
+
     this.pokemon = await this.pokemonService.getPokemon();
   }
 
@@ -149,4 +155,8 @@ export class PokemonComponent implements OnInit {
     this.formularioPokemon.patchValue(pokemon);
   }
 
+  async cargaTipo() {
+    this.tipo = await this.tipoService.getTipo();
+    this.formularioPokemon.value.tipo = (this.tipoSeleccionado._id);
+  }
 }

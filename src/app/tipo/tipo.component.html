@@ -5,7 +5,8 @@
   <p-table [value]="tipo" [paginator]="true" [rows]="6" [rowHover]="true" styleClass="p-datatable-sm" sortField="tipo">
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="tipo" colspan="2">Tipo <p-sortIcon field="tipo"></p-sortIcon></th>
+        <th pSortableColumn="tipo" colspan="2">Tipo <p-sortIcon field="tipo"></p-sortIcon>
+        </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-t>
@@ -30,8 +31,8 @@
   </div>
 
   <!-- Ventana emergente para añadir y editar tipos -->
-  <p-dialog [(visible)]="muestraFormularioTipo" [style]="{width: '40vw'}"
-    [transitionOptions]="'200ms'" header="{{accion}}">
+  <p-dialog [(visible)]="muestraFormularioTipo" [style]="{width: '40vw'}" [transitionOptions]="'200ms'"
+    header="{{accion}}">
     <form [formGroup]="formularioTipo" (ngSubmit)="submitTipo()">
       <div id="form-fields">
         <div class="field-wrap">
