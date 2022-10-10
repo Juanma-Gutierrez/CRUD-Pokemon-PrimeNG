@@ -34,8 +34,8 @@
         <td>{{p.evolucion1}}</td>
         <td>{{p.evolucion2}}</td>
         <td>{{p.habilidad}}</td>
-        <td>{{p.tipo.tipo}}</td>
-        <td>{{p.bioma.bioma}}</td>
+        <td>{{p.tipo | idToTipo | async}}</td>
+        <td>{{p.bioma | idToNombre | async}}</td>
         <td class="tcenter">
           <p-progressBar [value]="p.ataque" class="customProgress"></p-progressBar>
         </td>
@@ -74,7 +74,7 @@
       <div id="form-fields">
         <div class="field-wrap">
           <label for="nombre">Nombre:</label>
-          <input id="nombre" type="text" pInputText  formControlName="nombre" placeholder="Introduce nombre">
+          <input id="nombre" type="text" pInputText formControlName="nombre" placeholder="Introduce nombre">
           <label for="habilidad">Habilidad:</label>
           <input id="habilidad" type="text" formControlName="habilidad" placeholder="Introduce habilidad">
         </div>

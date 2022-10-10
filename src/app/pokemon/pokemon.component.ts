@@ -121,8 +121,12 @@ export class PokemonComponent implements OnInit {
   });
 
   async cargaPokemon() {
-
     this.pokemon = await this.pokemonService.getPokemon();
+    this.tipo = await this.tipoService.getTipo();
+    this.bioma = await this.biomaService.getBioma();
+    console.log(this.pokemon);
+    console.log(this.tipo);
+    console.log(this.bioma);
   }
 
   editaPokemon(pokemon: Pokemon) {

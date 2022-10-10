@@ -18,13 +18,17 @@ import { TipoComponent } from './tipo/tipo.component';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { IdToTipoPipe } from './id-to-tipo.pipe';
+import { IdToNombrePipe } from './id-to-nombre.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     BiomaComponent,
     PokemonComponent,
-    TipoComponent
+    TipoComponent,
+    IdToTipoPipe,
+    IdToNombrePipe
   ],
   imports: [
     ReactiveFormsModule,
