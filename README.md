@@ -42,7 +42,7 @@ En el detalle de Pokémon, podemos ver todos los datos y estadísticas del Poké
 
 ## Construido con 🛠️
 
-<img src="https://img.shields.io/badge/-Visual Studio Code-0273b4?logo=visualstudiocode&style=for-the-badge">
+<img src="https://img.shields.io/badge/-VSCode-0273b4?logo=visualstudiocode&style=for-the-badge">
 
 
 ## Autor ✒️
